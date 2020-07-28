@@ -17,3 +17,5 @@ def uniqueOccurrences(arr):
             unique_occ.add(occ)
     
     return True
+
+print("Hello")
