@@ -1,24 +1,15 @@
-# Link to problem: https://leetcode.com/problems/assign-cookies/
+# Link to problem: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 
-def findContentChildren(g, s):
-    # Sort the children and the cookies in increasing order
-    g.sort() # Children greed factors
-    s.sort() # Cookie sizes
+def maxProfit(prices):
+    total_profit = 0
+    length = len(prices)
     
-    content = 0 # Number of content children
-    i,j = 0,0 # i: index in g, j: index in s
-    num_child, num_cook = len(g), len(s)
+    if length in {0, 1}:
+        return total_profit
     
-    while i < num_child and j < num_cook:
-        curr_child = g[i]
-        curr_cook = s[j]
-        # Current child content with the current cookie
-        if curr_child <= curr_cook:
-            content += 1
-            i += 1
-            j += 1
-        else:
-            # Current child too greedy to be content w/ current cookie
-            j += 1 # Try out a larger cookie
-            
-    return content
+    for i in range(1, length):
+        if prices[i-1] < prices[i]:
+            # Buy at i-1 and sell at i
+            total_profit += prices[i] - prices[i-1]
+    
+    return total_profit
