@@ -43,3 +43,22 @@ class IterativeSolution:
 ######################
 # RECURSIVE SOLUTION #
 ######################
+class RecursiveSolution:
+    def swapPairs(self, head: ListNode) -> ListNode:
+        # Base case: Undefined node or one node
+        if (head is None) or (head.next is None):
+            return head
+        
+        left_node = head
+        right_node = head.next
+        
+        # Figure out the value of left_node for the next recursive call
+        next_left = None
+        if (head.next):
+            next_left = right_node.next
+        
+        # Swap the positions of the right node and left node
+        left_node.next = self.swapPairs(next_left)        
+        right_node.next = left_node
+        
+        return right_node
